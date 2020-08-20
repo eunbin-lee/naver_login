@@ -1,188 +1,203 @@
 * {
-  margin: 0;
-  padding: 0;
-  background: #f5f6f8;
-  letter-spacing: -1px;
-}
-li {
-  list-style: none;
-}
-a {
-  color: black;
-  text-decoration: none;
-}
+    margin: 0;
+    padding: 0;
+    background: #f5f6f8;
+    letter-spacing: -1px;
+  }
+  li {
+    list-style: none;
+  }
+  a {
+    color: black;
+    text-decoration: none;
+  }
+  
+  .loginWrap {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .selectLanguage, .App {
+    width: 450px;
+  }
+  .selectLanguage {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    margin-left: 280px;
+  }
+  .selectLanguage select {
+    padding: 5px 22px 10px 5px;
+    font-size: 11px;
+    border: 1px solid #ddd;
+  }
+  
+  .App {
+    margin-top: 50px;
+  }
+  
+  .title {
+    display: flex;
+    justify-content: center;
+    margin: 50px 0;
+    border: 1px  black;
+  }
+  
+  .inputForm {
+    overflow: hidden;
+  }
+  .input {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 8px;
+    background-color: #fff;
+    font-size: 15px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+  }
+  .loginBtn {
+    width: 100%;
+    margin-top: 3px;
+    padding: 15px 0;
+    border: 1px solid #08bb59;
+    background-color: #03c75b;
+    font-size: 16px;
+    color: #fff;
+    box-sizing: border-box;
+  }
+  .loginState, .ipSecurity {
+    padding: 18px 0;
+    font-size: 15px;
+  }
+  .loginState {
+    float: left;
+  }
+  .ipSecurity {
+    float: right;
+  }
+  .line {
+    border: 0;
+    border-top: 1px solid #ddd;
+  }
+  
+  .easyLogin {
+    margin: 40px 0 20px;
+    text-align: center;
+    font-size: 20px;
+  }
+  .easyWayBtns {
+    overflow: hidden;
+  }
+  .qrCode, .disposable {
+    width: 48%;
+    float: left;
+    text-align: center;
+    background-color: #fff;
+    border: 1px solid #08bb59;
+    box-sizing: border-box;
+  }
+  .qrCode {
+    margin-right: 2%;
+  }
+  .qrCode a, .disposable a {
+    display: block;
+    width: 100%;
+    padding: 15px 20px;
+    background-color: #fff;
+    box-sizing: border-box;
+  }
+  .findAccount {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    margin: 12px 0 50px;
+  }
+  .findAccount li {
+    float: left;
+  }
+  .findAccount li a {
+    margin: 0 10px;
+    font-size: 14px;
+    color: #999;
+  }
+  .findAccount li::after {
+    content: "";
+    display: inline-block;
+    height: 12px;
+    border-right: 1px solid #ccc;
+  }
+  .findAccount li:last-child::after {
+    border: 0;
+  }
+  
+  .advertiseWrap {
+    width: 100%;
+    height: 120px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+  }
+  
+  .footer {
+    margin-top: 120px;
+  }
+  .footer ul {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+  }
+  .footer ul li {
+    float: left;
+  }
+  .footer ul li a {
+    margin: 0 7px;
+    font-size: 12px;
+    letter-spacing: 0;
+  }
+  .footer ul li::after {
+    content: "";
+    display: inline-block;
+    height: 10px;
+    border-right: 1px solid #bbb;
+  }
+  .footer ul li:last-child::after {
+    border: 0;
+  }
+  .footer small {
+    display: flex;
+    justify-content: center;
+    margin: 8px 0;
+  }
+  .footer small img {
+    width: 60px;
+    height: 13px;
+  }
+  .footer small address {
+    margin-left: 4px;
+    font-size: 9px;
+    font-style: normal;
+    letter-spacing: 0.5px;
+  }
+  .footer small address b {
+    letter-spacing: 0.5px;
+  }
+  .footer small address b span {
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
 
-.loginWrap {
-  position: relative;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
+/* QR code */
+.qrcodeWrap,.DispoWrap {width:450px; height:450px; margin:0 auto; border:1px solid #ddd; background:#fff;}
+.qrcodeWrap>* {background:#fff;}
+.qrcodeWrap h2 { text-align:center; margin-top:20px; margin-bottom:10px; font-size:21px;}
+.qrcode {width:220px; height:220px; margin:20px auto; border:1px solid #ddd;}
+.qrcodeWrap p {text-align:center; line-height:30px;}
+#qr_number {font-size:30px;}
 
-.selectLanguage, .App {
-  width: 450px;
-}
-.selectLanguage {
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  margin-left: 280px;
-}
-.selectLanguage select {
-  padding: 5px 22px 10px 5px;
-  font-size: 11px;
-  border: 1px solid #ddd;
-}
-
-.App {
-  margin-top: 50px;
-}
-
-.title {
-  display: flex;
-  justify-content: center;
-  margin: 50px 0;
-  border: 1px  black;
-}
-
-.inputForm {
-  overflow: hidden;
-}
-.input {
-  width: 100%;
-  padding: 14px;
-  margin-bottom: 8px;
-  background-color: #fff;
-  font-size: 15px;
-  border: 1px solid #ddd;
-  box-sizing: border-box;
-}
-.loginBtn {
-  width: 100%;
-  margin-top: 3px;
-  padding: 15px 0;
-  border: 1px solid #08bb59;
-  background-color: #03c75b;
-  font-size: 16px;
-  color: #fff;
-  box-sizing: border-box;
-}
-.loginState, .ipSecurity {
-  padding: 18px 0;
-  font-size: 15px;
-}
-.loginState {
-  float: left;
-}
-.ipSecurity {
-  float: right;
-}
-.line {
-  border: 0;
-  border-top: 1px solid #ddd;
-}
-
-.easyLogin {
-  margin: 40px 0 20px;
-  text-align: center;
-  font-size: 20px;
-}
-.easyWayBtns {
-  overflow: hidden;
-}
-.qrCode, .disposable {
-  width: 48%;
-  float: left;
-  text-align: center;
-  background-color: #fff;
-  border: 1px solid #08bb59;
-  box-sizing: border-box;
-}
-.qrCode {
-  margin-right: 2%;
-}
-.qrCode a, .disposable a {
-  display: block;
-  width: 100%;
-  padding: 15px 20px;
-  background-color: #fff;
-  box-sizing: border-box;
-}
-.findAccount {
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  margin: 12px 0 50px;
-}
-.findAccount li {
-  float: left;
-}
-.findAccount li a {
-  margin: 0 10px;
-  font-size: 14px;
-  color: #999;
-}
-.findAccount li::after {
-  content: "";
-  display: inline-block;
-  height: 12px;
-  border-right: 1px solid #ccc;
-}
-.findAccount li:last-child::after {
-  border: 0;
-}
-
-.advertiseWrap {
-  width: 100%;
-  height: 120px;
-  border: 1px solid #ddd;
-  background-color: #fff;
-}
-
-.footer {
-  margin-top: 120px;
-}
-.footer ul {
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-}
-.footer ul li {
-  float: left;
-}
-.footer ul li a {
-  margin: 0 7px;
-  font-size: 12px;
-  letter-spacing: 0;
-}
-.footer ul li::after {
-  content: "";
-  display: inline-block;
-  height: 10px;
-  border-right: 1px solid #bbb;
-}
-.footer ul li:last-child::after {
-  border: 0;
-}
-.footer small {
-  display: flex;
-  justify-content: center;
-  margin: 8px 0;
-}
-.footer small img {
-  width: 60px;
-  height: 13px;
-}
-.footer small address {
-  margin-left: 4px;
-  font-size: 9px;
-  font-style: normal;
-  letter-spacing: 0.5px;
-}
-.footer small address b {
-  letter-spacing: 0.5px;
-}
-.footer small address b span {
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
+.qr_exit,.dis_exit {display:block; width:450px; height:40px;
+          margin-top:10px; margin-bottom:30px;
+          outline:none;  border:1px solid #ddd; 
+          line-height:40px; 
+         background:#fff; text-align:center;}
+#qr_time {color:#03c75b; font-size:20px; font-weight:bolder; background:#fff;}
