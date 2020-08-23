@@ -8,6 +8,8 @@ import Advertise from './components/Advertise';
 import { HashRouter, Route } from 'react-router-dom';
 import KorQr from './components/KorQr';
 import EngQr from './components/EngQr';
+import KorDisposable from './components/KorDisposable';
+import EngDisposable from './components/EngDisposable';
 
 class App extends React.Component {
   state = {
@@ -52,6 +54,8 @@ class App extends React.Component {
             {this.article}
             <Route path="/korqr" exact={true} component={KorQr} />
             <Route path="/engqr" exact={true} component={EngQr} />
+            <Route path="/kordisposable" exact={true} component={KorDisposable} />
+            <Route path="/engdisposable" exact={true} component={EngDisposable} />
           </HashRouter>
         
           <Advertise/>

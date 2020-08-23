@@ -187,17 +187,77 @@
     letter-spacing: 0.5px;
   }
 
-/* QR code */
-.qrcodeWrap,.DispoWrap {width:450px; height:450px; margin:0 auto; border:1px solid #ddd; background:#fff;}
-.qrcodeWrap>* {background:#fff;}
-.qrcodeWrap h2 { text-align:center; margin-top:20px; margin-bottom:10px; font-size:21px;}
-.qrcode {width:220px; height:220px; margin:20px auto; border:1px solid #ddd;}
-.qrcodeWrap p {text-align:center; line-height:30px;}
-#qr_number {font-size:30px;}
-
-.qr_exit,.dis_exit {display:block; width:450px; height:40px;
-          margin-top:10px; margin-bottom:30px;
-          outline:none;  border:1px solid #ddd; 
-          line-height:40px; 
-         background:#fff; text-align:center;}
-#qr_time {color:#03c75b; font-size:20px; font-weight:bolder; background:#fff;}
+/* QR code, disposable */
+.qrcodeWrap,.disposableWrap {
+  width: 450px; 
+  height: 450px; 
+  margin: 0 auto; 
+  border: 1px solid #ddd; 
+  background: #fff;
+}
+.disposableWrap {
+  height: 305px;
+}
+.qrcodeWrap > *, .disposableWrap > * {
+  background: #fff;
+}
+.qrcodeWrap h2, .disposableWrap h2 {
+  text-align: center; 
+  margin-top: 20px; 
+  margin-bottom: 10px; 
+  font-size: 21px;
+}
+.qrcode {
+  width: 220px; 
+  height: 220px; 
+  margin: 20px auto;
+  border: 1px solid #ddd;
+}
+.qrcodeWrap p, .disposableWrap p {
+  text-align: center; 
+  line-height: 30px;
+  font-size: 15px;
+}
+#qr_number {
+  font-size: 30px;
+  background: #fff;
+  color: #666;
+}
+.qr_exit,.disposable_exit {
+  display: block; 
+  width: 450px; 
+  height: 50px;
+  margin-top: 10px; 
+  margin-bottom: 30px;
+  outline: none;  
+  border: 1px solid #ddd; 
+  line-height: 50px; 
+  background: #fff; 
+  text-align: center;
+}
+#qr_time {
+  color: #03c75b; 
+  font-size: 20px; 
+  font-weight: bolder; 
+  background: #fff;
+}
+.disposableInput {
+  display: block;
+  width: 420px;
+  height: 50px;
+  margin: 20px auto 0;
+  padding: 0 14px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+}
+.disposableLogin {
+  display: block;
+  width: 420px;
+  height: 50px;
+  margin: 10px auto 0;
+  background: #03c75b;
+  border: 1px solid #08bb59;
+  font-size: 16px;
+  color: #fff;
+  text-align: center;
+}

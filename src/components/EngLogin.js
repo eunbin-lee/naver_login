@@ -23,7 +23,7 @@ class EngLogin extends React.Component {
                 <div className="easyWay">
                     <ul className="easyWayBtns">
                         <li className="qrCode"><Link to="/engqr">QR code</Link></li>
-                        <li className="disposable"><Link to="/disposable">Disposable</Link></li>
+                        <li className="disposable"><Link to="/engdisposable">Disposable number</Link></li>
                     </ul>
                     <ul className="findAccount">
                         <li><a href="/">Find ID</a></li>
@@ -37,10 +37,3 @@ class EngLogin extends React.Component {
 };
 
 export default EngLogin;
-
-{/* <HashRouter>
-    <Route path="/" exact={true} component={EngMain}/>
-    <Route path="/qrCode" exact={true} component={Qrcode}/>
-    <Route path="/disposable" exact={true} component={Disposable}/>
-    <Navigation/>
-</HashRouter> */}

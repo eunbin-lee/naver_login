@@ -23,7 +23,7 @@ class KorLogin extends React.Component {
                 <div className="easyWay">
                     <ul className="easyWayBtns">
                         <li className="qrCode"><Link to="/korqr">QR코드 로그인</Link></li>
-                        <li className="disposable"><Link to="/disposable">일회용 번호 로그인</Link></li>
+                        <li className="disposable"><Link to="/kordisposable">일회용 번호 로그인</Link></li>
                     </ul>
                     <ul className="findAccount">
                         <li><a href="/">아이디 찾기</a></li>
