@@ -7,7 +7,7 @@ class SignUp extends React.Component {
             <div>
                 <form
                     onSubmit={(e) => {
-                        e.preventDefault();
+                        // e.preventDefault();
                         const signUp = 'signUp';
                         const signUpList = [];
                         const LS_item = JSON.parse(
@@ -25,8 +25,9 @@ class SignUp extends React.Component {
                             signUp,
                             JSON.stringify(signUpList),
                         );
+                        // window.location.href = 'http://localhost:3000/';
                     }}
-                    action="http://localhost:3000/"
+                    action="/"
                     // method="post"
                 >
                     <input
@@ -48,7 +49,7 @@ class SignUp extends React.Component {
                     />
 
                     <div>
-                        <Link to="/" className="backToHome">
+                        <Link to="/login" className="backToHome">
                             취소
                         </Link>
                     </div>

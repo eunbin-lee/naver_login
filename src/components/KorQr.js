@@ -47,7 +47,7 @@ class KorQr extends React.Component {
                         </span>
                     </p>
                 </div>
-                <Link className="qr_exit" to="/">
+                <Link className="qr_exit" to="/login">
                     취소
                 </Link>
             </>

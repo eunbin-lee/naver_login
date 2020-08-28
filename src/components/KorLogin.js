@@ -1,7 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import LoginModal from './LoginModal';
 
 class KorLogin extends React.Component {
+    state = {
+        success: false,
+        article: null,
+    };
+
     render() {
         return (
             <>
@@ -9,47 +15,39 @@ class KorLogin extends React.Component {
                     className="inputForm"
                     onSubmit={(e) => {
                         e.preventDefault();
-                        const id = 'loginID';
-                        localStorage.setItem(
-                            id,
-                            JSON.stringify(e.target.id.value),
-                        );
-
-                        const pw = 'loginPW';
-                        localStorage.setItem(
-                            pw,
-                            JSON.stringify(e.target.pw.value),
-                        );
-
                         const LS_signUp = JSON.parse(
                             localStorage.getItem('signUp'),
                         );
-                        const idFilter = LS_signUp.filter(
-                            (account) => account.id === e.target.id.value,
-                        );
-
-                        const pwFilter = LS_signUp.filter(
-                            (account) => account.pw === e.target.pw.value,
-                        );
-
-                        if (
-                            idFilter.length !== 0 &&
-                            idFilter[0].pw === e.target.pw.value
-                        ) {
-                            alert('로그인 완료~!~!~~!~!~!~!~!');
-                        } else if (
-                            pwFilter.length !== 0 &&
-                            idFilter.length === 0 &&
-                            pwFilter[0].pw === e.target.pw.value
-                        ) {
-                            alert('아이디가 일치하지 않습니다.');
-                        } else if (
-                            idFilter.length !== 0 &&
-                            idFilter[0].pw !== e.target.pw.value
-                        ) {
-                            alert('비밀번호가 일치하지 않습니다.');
+                        if (LS_signUp) {
+                            const idFilter = LS_signUp.filter(
+                                (account) => account.id === e.target.id.value,
+                            );
+                            const pwFilter = LS_signUp.filter(
+                                (account) => account.pw === e.target.pw.value,
+                            );
+                            if (
+                                idFilter.length !== 0 &&
+                                idFilter[0].pw === e.target.pw.value
+                            ) {
+                                alert('로그인 완료~!~!~~!~!~!~!~!');
+                                this.setState({ article: e.target.id.value });
+                                this.setState({ success: true });
+                            } else if (
+                                pwFilter.length !== 0 &&
+                                idFilter.length === 0 &&
+                                pwFilter[0].pw === e.target.pw.value
+                            ) {
+                                alert('아이디가 일치하지 않습니다.');
+                            } else if (
+                                idFilter.length !== 0 &&
+                                idFilter[0].pw !== e.target.pw.value
+                            ) {
+                                alert('비밀번호가 일치하지 않습니다.');
+                            } else {
+                                alert('아이디와 비밀번호가 일치하지 않습니다.');
+                            }
                         } else {
-                            alert('아이디와 비밀번호가 일치하지 않습니다.');
+                            alert('회원가입 가입 해라~ 알았나?');
                         }
                     }}
                 >
@@ -75,15 +73,20 @@ class KorLogin extends React.Component {
                         <input type="checkbox" name="IP보안" id="" />
                     </label>
                 </form>
+                {this.state.success ? (
+                    <LoginModal article={this.state.article} />
+                ) : null}
                 <hr className="line" />
                 <h2 className="easyLogin">더욱 간편한 로그인</h2>
                 <div className="easyWay">
                     <ul className="easyWayBtns">
                         <li className="qrCode">
-                            <Link to="/korqr">QR코드 로그인</Link>
+                            <Link to="/login/korqr">QR코드 로그인</Link>
                         </li>
                         <li className="disposable">
-                            <Link to="/kordisposable">일회용 번호 로그인</Link>
+                            <Link to="/login/kordisposable">
+                                일회용 번호 로그인
+                            </Link>
                         </li>
                     </ul>
                     <ul className="findAccount">
@@ -94,7 +97,7 @@ class KorLogin extends React.Component {
                             <a href="/">비밀번호 찾기</a>
                         </li>
                         <li>
-                            <Link to="/signup">회원가입</Link>
+                            <Link to="/login/signup">회원가입</Link>
                         </li>
                     </ul>
                 </div>
