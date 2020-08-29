@@ -5,7 +5,7 @@ import LoginModal from './LoginModal';
 class KorLogin extends React.Component {
     state = {
         success: false,
-        article: null,
+        id: null,
     };
 
     render() {
@@ -30,7 +30,7 @@ class KorLogin extends React.Component {
                                 idFilter[0].pw === e.target.pw.value
                             ) {
                                 alert('로그인 완료~!~!~~!~!~!~!~!');
-                                this.setState({ article: e.target.id.value });
+                                this.setState({ id: e.target.id.value });
                                 this.setState({ success: true });
                             } else if (
                                 pwFilter.length !== 0 &&
@@ -73,9 +73,7 @@ class KorLogin extends React.Component {
                         <input type="checkbox" name="IP보안" id="" />
                     </label>
                 </form>
-                {this.state.success ? (
-                    <LoginModal article={this.state.article} />
-                ) : null}
+                {this.state.success ? <LoginModal id={this.state.id} /> : null}
                 <hr className="line" />
                 <h2 className="easyLogin">더욱 간편한 로그인</h2>
                 <div className="easyWay">

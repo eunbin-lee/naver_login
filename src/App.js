@@ -10,7 +10,7 @@ class App extends React.Component {
         return (
             <HashRouter>
                 <Route path="/login" component={LoginApp} />
-                <Route path="/movie" component={MovieApp} />
+                <Route path="/moviehome" component={MovieApp} />
             </HashRouter>
         );
     }

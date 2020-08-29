@@ -1,12 +1,12 @@
 import React from 'react';
 import { HashRouter, Route } from 'react-router-dom';
-import Movie from './Movie';
+import MovieHome from './MovieHome';
 
 class MovieApp extends React.Component {
     render() {
         return (
             <HashRouter>
-                <Route path="/movie" exact={true} component={Movie} />
+                <Route path="/moviehome" exact={true} component={MovieHome} />
             </HashRouter>
         );
     }
