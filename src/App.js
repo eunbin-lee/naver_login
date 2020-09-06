@@ -1,16 +1,16 @@
 import React from 'react';
 import './App.css';
+import Login from './components/Login';
 import { HashRouter, Route } from 'react-router-dom';
-import LoginApp from './components/LoginApp';
-import MovieApp from './components/MovieApp';
+import Movie_App from './movie_app/Movie_App';
 
 class App extends React.Component {
     render() {
-        window.location.href = '/#/login/';
+        window.location.href = '/#/login';
         return (
             <HashRouter>
-                <Route path="/login" component={LoginApp} />
-                <Route path="/moviehome" component={MovieApp} />
+                <Route path="/login" component={Login} />
+                <Route path="/movie" component={Movie_App} />
             </HashRouter>
         );
     }
