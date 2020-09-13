@@ -1,7 +1,7 @@
-import React from "react";
-import axios from "axios";
-import Search from "./Search";
-import SearchedPage from "./SearchedPage";
+import React from 'react';
+import axios from 'axios';
+import Search from './Search';
+import SearchedPage from './SearchedPage';
 
 class Latest extends React.Component {
   state = {
@@ -10,8 +10,9 @@ class Latest extends React.Component {
     total_pages: 1,
     pages: 1,
   };
+  MYLIST = 'mylist';
   NP_URL =
-    "https://api.themoviedb.org/3/movie/now_playing?api_key=72892f68da9d9b2d2cef54e7fa2b8bc8&language=en-US";
+    'https://api.themoviedb.org/3/movie/now_playing?api_key=72892f68da9d9b2d2cef54e7fa2b8bc8&language=en-US';
   ContentsEA = 30;
   movies = [];
   latestMovies = [];
@@ -19,15 +20,13 @@ class Latest extends React.Component {
   searchValue = [];
 
   createLi = (total_pages) => {
-    const ul = document.querySelector("#ul");
+    const ul = document.querySelector('#ul');
     if (!ul.firstChild) {
       for (let i = 1; i <= total_pages; i++) {
-        const li = document.createElement("li");
+        const li = document.createElement('li');
         li.innerText = `${i}`;
 
-        li.addEventListener("click", (e) => {
-          //setState가 이벤트에 제일 밑에 있어야 새로운 값을 넣을 수 있는데 setState 안에 값은 상관없다
-
+        li.addEventListener('click', (e) => {
           this.pageMovies = [];
 
           for (var j = 0; j < this.ContentsEA; j++) {
@@ -58,7 +57,7 @@ class Latest extends React.Component {
     for (let j = 0; j < this.movies.length; j++) {
       const latestFilter = this.movies[j].data.results.filter(
         (dish) =>
-          dish.release_date.match("2020-08") && dish.poster_path !== null
+          dish.release_date.match('2020-08') && dish.poster_path !== null,
       );
       this.latestMovies.push(...latestFilter);
     }
@@ -75,9 +74,40 @@ class Latest extends React.Component {
     this.createLi(total);
     this.setState({ total_pages, isLoading: false });
   };
-  //컴포넌트 디드마운트에 getMovie를 넣으면 render뒤에 쓰이니까
-  //이벤트는 실행
-  //렌더->디드->(이벤트->렌더)반복
+  localSet = (dish) => {
+    const mylist = [];
+    const ML_item = JSON.parse(localStorage.getItem(this.MYLIST)); //원래 있던 거
+    if (ML_item !== null) {
+      mylist.push(...ML_item);
+    }
+    mylist.push(dish);
+    localStorage.setItem(this.MYLIST, JSON.stringify(mylist));
+    return mylist;
+  };
+  localRemove = (dish) => {
+    let mylist = [];
+    const ML_item = JSON.parse(localStorage.getItem(this.MYLIST)); //원래 있던 거
+    if (ML_item) {
+      mylist.push(...ML_item);
+    }
+    mylist = mylist.filter(
+      (zzim) => zzim.original_title !== dish.original_title,
+    );
+    localStorage.setItem(this.MYLIST, JSON.stringify(mylist));
+    return mylist;
+  };
+  localGet = (content) => {
+    const ML_item = JSON.parse(localStorage.getItem(this.MYLIST));
+    if (ML_item) {
+      for (let i = 0; i < ML_item.length; i++) {
+        if (ML_item[i].original_title === content.original_title) {
+          return 'fas fa-heart';
+        }
+      }
+    }
+    return 'far fa-heart';
+  };
+
   componentDidMount() {
     this.getMovie();
   }
@@ -97,7 +127,7 @@ class Latest extends React.Component {
                     this.searchValue.push(dish);
                   }
                 }
-              })
+              }),
             );
             this.setState({ isLoading: false });
           }}
@@ -107,26 +137,42 @@ class Latest extends React.Component {
         ) : this.searchValue.length ? (
           this.searchValue.map((dish) => <SearchedPage dish={dish} />)
         ) : (
-          <div>
-            {this.pageMovies.map((dish) => (
-              <div className="contentWrap">
-                <div className="content">
-                  <img
-                    src={`http://i2.wp.com/image.tmdb.org/t/p/w780/${dish.poster_path}`}
-                    alt={dish.poster_path}
-                    className="imgsrc"
-                  />
-                  <p>{dish.original_title}</p>
+          <>
+            <h1 className="latest_title">최신 콘텐츠</h1>
+            <div className="contentsWrap">
+              {this.pageMovies.map((content) => (
+                <div className="contentWrap">
+                  <div className="content">
+                    <img
+                      src={`http://i2.wp.com/image.tmdb.org/t/p/w780/${content.poster_path}`}
+                      alt={content.poster_path}
+                      className="imgsrc"
+                    />
+                    <p>{content.original_title}</p>
+                    <i
+                      class={this.localGet(content)}
+                      name={content.original_title}
+                      onClick={(e) => {
+                        if (e.target.className === 'far fa-heart') {
+                          e.target.className = 'fas fa-heart';
+                          this.localSet(content);
+                        } else {
+                          this.localRemove(content);
+                          e.target.className = 'far fa-heart';
+                        }
+                      }}
+                    ></i>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          </>
         )}
         <div className="pageNum">
           <ul
             id="ul"
             style={{
-              display: this.searchValue.length ? "none" : "block",
+              display: this.searchValue.length ? 'none' : 'block',
             }}
           ></ul>
         </div>
@@ -134,4 +180,5 @@ class Latest extends React.Component {
     );
   }
 }
+
 export default Latest;

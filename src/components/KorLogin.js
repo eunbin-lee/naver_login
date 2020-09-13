@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import ModalModal from "./ModalModal";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import ModalModal from './ModalModal';
 
 class KorLogin extends React.Component {
   state = {
@@ -15,36 +15,36 @@ class KorLogin extends React.Component {
           className="inputForm"
           onSubmit={(e) => {
             e.preventDefault();
-            const LS_signUp = JSON.parse(localStorage.getItem("signUp"));
+            const LS_signUp = JSON.parse(localStorage.getItem('signUp'));
             if (LS_signUp) {
               const idFilter = LS_signUp.filter(
-                (account) => account.id === e.target.id.value
+                (account) => account.id === e.target.id.value,
               );
               const pwFilter = LS_signUp.filter(
-                (account) => account.pw === e.target.pw.value
+                (account) => account.pw === e.target.pw.value,
               );
               if (
                 idFilter.length !== 0 &&
                 idFilter[0].pw === e.target.pw.value
               ) {
-                alert("로그인 완료~!~!~~!~!~!~!~!");
+                alert('로그인 완료~!~!~~!~!~!~!~!');
                 this.setState({ article: e.target.id.value, success: true });
               } else if (
                 pwFilter.length !== 0 &&
                 idFilter.length === 0 &&
                 pwFilter[0].pw === e.target.pw.value
               ) {
-                alert("아이디가 일치하지 않습니다.");
+                alert('아이디가 일치하지 않습니다.');
               } else if (
                 idFilter.length !== 0 &&
                 idFilter[0].pw !== e.target.pw.value
               ) {
-                alert("비밀번호가 일치하지 않습니다.");
+                alert('비밀번호가 일치하지 않습니다.');
               } else {
-                alert("아이디와 비밀번호가 일치하지 않습니다.");
+                alert('아이디와 비밀번호가 일치하지 않습니다.');
               }
             } else {
-              alert("회원가입 가입 해라~ 알았나?");
+              alert('회원가입 가입 해라~ 알았나?');
             }
           }}
         >
@@ -56,15 +56,41 @@ class KorLogin extends React.Component {
             placeholder="비밀번호"
           />
           <input type="submit" className="loginBtn" value="로그인" />
-          <label htmlFor="" className="loginState">
-            <input type="checkbox" name="로그인 상태 유지" id="" />
-            로그인 상태 유지
-          </label>
-          <label htmlFor="" className="ipSecurity">
-            IP 보안
-            <input type="checkbox" name="IP보안" id="" />
-          </label>
         </form>
+        <div className="checkboxWrap">
+          <div className="loginState">
+            <i
+              className="far fa-check-circle"
+              onClick={
+                ('click',
+                (e) => {
+                  if (e.target.className === 'far fa-check-circle') {
+                    e.target.className = 'fas fa-check-circle';
+                  } else {
+                    e.target.className = 'far fa-check-circle';
+                  }
+                })
+              }
+            ></i>
+            로그인 상태 유지
+          </div>
+          <div className="ipSecurity">
+            IP 보안
+            <i
+              className="far fa-check-circle"
+              onClick={
+                ('click',
+                (e) => {
+                  if (e.target.className === 'far fa-check-circle') {
+                    e.target.className = 'fas fa-check-circle';
+                  } else {
+                    e.target.className = 'far fa-check-circle';
+                  }
+                })
+              }
+            ></i>
+          </div>
+        </div>
         {this.state.success ? (
           <ModalModal article={this.state.article} />
         ) : null}

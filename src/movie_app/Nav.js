@@ -1,23 +1,19 @@
-import React from "react";
-import logo from "../logo.png";
-import { Link } from "react-router-dom";
+import React from 'react';
+import logo from '../logo.png';
+import { Link } from 'react-router-dom';
+
 class Nav extends React.Component {
   state = {
     title: this.props.results,
   };
-  // getTitle() {
-  //   const { title } = this.state;
-  //   for (let i = 0; i < title.length; i++) {
-  //     this.setState({ title: this.props.results });
-  //   }
-  // }
   render() {
     return (
-      //API,내가찜한 콘텐츠,검색기능,추천검색어
       <div className="headerWrap">
         <header className="header">
           <div className="logo">
-            <img src={logo} alt="Navlix" className="movie_logo" />
+            <Link to="/movie/home">
+              <img src={logo} alt="Navlix" className="movie_logo" />
+            </Link>
           </div>
           <ul className="movie_nav">
             <li className="active">
@@ -41,4 +37,5 @@ class Nav extends React.Component {
     );
   }
 }
+
 export default Nav;

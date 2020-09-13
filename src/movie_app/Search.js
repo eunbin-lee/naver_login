@@ -1,5 +1,6 @@
-import React from "react";
-import search from "../search.png";
+import React from 'react';
+import search from '../search.png';
+
 class Search extends React.Component {
   state = {
     isClicked: false,
@@ -7,17 +8,12 @@ class Search extends React.Component {
   render() {
     return (
       <div className="searchWrap">
-        {/* <input
-          type="button"
-          className="searchBtn"
-          style={{ right: this.isClicked ? "0" : "-100px" }}
-        /> */}
         <img
           src={search}
           alt="돋보기"
           className="searchBtn"
           onClick={
-            ("click",
+            ('click',
             () => {
               this.setState({ isClicked: !this.state.isClicked });
             })
@@ -28,16 +24,17 @@ class Search extends React.Component {
           placeholder="Search"
           className="searchText"
           onChange={
-            ("change",
+            ('change',
             (e) => {
               e.preventDefault();
               this.props.onChangePage(e.target.value);
             })
           }
-          style={{ width: this.state.isClicked ? "150px" : "0" }}
+          style={{ width: this.state.isClicked ? '150px' : '0' }}
         />
       </div>
     );
   }
 }
+
 export default Search;

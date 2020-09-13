@@ -1,12 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-function ModalModal({ id }) {
+function ModalModal({ article }) {
   return (
     <div className="modal-wrapper">
       <div className="modal">
         <div className="modal-title"></div>
-        <p>환영합니다 {id}님!</p>
+        <p>
+          환영합니다 <b>{article}</b> 님!
+        </p>
         <div className="close-wrapper">
           <Link id="close" to="/movie/home">
             닫기
@@ -16,4 +18,5 @@ function ModalModal({ id }) {
     </div>
   );
 }
+
 export default ModalModal;

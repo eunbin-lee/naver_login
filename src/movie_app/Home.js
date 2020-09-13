@@ -1,8 +1,9 @@
-import React from "react";
-import axios from "axios";
-import HomeSelected from "./HomeSelected";
-import Search from "./Search";
-import SearchedPage from "./SearchedPage";
+import React from 'react';
+import axios from 'axios';
+import HomeSelected from './HomeSelected';
+import Search from './Search';
+import SearchedPage from './SearchedPage';
+
 class Home extends React.Component {
   state = {
     isLoading: true,
@@ -15,27 +16,25 @@ class Home extends React.Component {
   selectedGenre = [];
   searchValue = [];
   NP_URL =
-    "https://api.themoviedb.org/3/movie/now_playing?api_key=72892f68da9d9b2d2cef54e7fa2b8bc8&language=en-US";
+    'https://api.themoviedb.org/3/movie/now_playing?api_key=72892f68da9d9b2d2cef54e7fa2b8bc8&language=en-US';
   GR_URL =
-    "https://api.themoviedb.org/3/genre/movie/list?api_key=72892f68da9d9b2d2cef54e7fa2b8bc8&language=en-US";
-  //찜
-  //마우스오버 클릭할 버튼이 생김
-  //버튼클릭시 로컬스토리지 저장 && 찜한 버튼 모양 변화
-  //로컬스토리지 데이터 찜컴포넌트에 송출
-  //찜 페이지에서 마우스 오버->클릭 버튼 생성
-  //버튼 클릭시 로컬스토리지에서 빼기 및 rerender(setState);
+    'https://api.themoviedb.org/3/genre/movie/list?api_key=72892f68da9d9b2d2cef54e7fa2b8bc8&language=en-US';
 
   createOption = () => {
-    const select = document.getElementById("select");
-    select.className = "genre_select";
+    const select = document.getElementById('select');
+    select.className = 'genre_select';
     if (!select.firstChild) {
+      const option = document.createElement('option');
+      option.innerText = '선택';
+      select.appendChild(option);
       for (let i = 0; i < this.objList.length; i++) {
-        const option = document.createElement("option");
+        const option = document.createElement('option');
         option.innerText = `${this.objList[i].genre}`;
         select.appendChild(option);
       }
     }
   };
+
   getMovie = async () => {
     const getTotalPages = await axios.get(`${this.NP_URL}&page=1`);
     const getGenres = await axios.get(this.GR_URL);
@@ -62,7 +61,7 @@ class Home extends React.Component {
           }
         });
       }
-    } //포포맵포
+    }
 
     for (let i = 0; i < this.objList.length; i++) {
       if (this.objList[i].movie.length === 0) {
@@ -72,11 +71,14 @@ class Home extends React.Component {
     this.setState({ isLoading: false });
     this.createOption();
   };
+
   componentDidMount() {
     this.getMovie();
   }
+
   render() {
     const { isLoading } = this.state;
+
     return (
       <div className="genresPage">
         <Search
@@ -89,7 +91,7 @@ class Home extends React.Component {
                     this.searchValue.push(dish);
                   }
                 }
-              })
+              }),
             );
             this.setState({ isLoading: false });
           }}
@@ -102,10 +104,15 @@ class Home extends React.Component {
               name=""
               id="select"
               onChange={
-                ("change",
+                ('change',
                 (e) => {
                   e.preventDefault();
+
                   for (let i = 0; i < this.objList.length; i++) {
+                    if (e.target.value === '선택') {
+                      this.selectedGenre = [];
+                      this.setState({ isLoading: false });
+                    }
                     if (e.target.value === this.objList[i].genre) {
                       this.selectedGenre = [this.objList[i]];
                       this.setState({ isLoading: false });
@@ -115,16 +122,18 @@ class Home extends React.Component {
               }
             ></select>
 
-            {/* 삼항삼항 */}
             {this.searchValue.length
               ? this.searchValue.map((dish) => <SearchedPage dish={dish} />)
               : this.selectedGenre.length
-              ? this.selectedGenre.map((dish) => <HomeSelected dish={dish} />)
-              : this.objList.map((dish) => <HomeSelected dish={dish} />)}
+              ? this.selectedGenre.map((dish) => (
+                  <HomeSelected objlist={dish} />
+                ))
+              : this.objList.map((dish) => <HomeSelected objlist={dish} />)}
           </div>
         )}
       </div>
     );
   }
 }
+
 export default Home;

@@ -1,23 +1,24 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 class KorQr extends React.Component {
   random = Math.floor(Math.random() * 100);
-
   state = {
     count: 180,
+    adarray: ['qrcode1', 'qrcode2', 'qrcode3'],
+    randomImage: Math.floor(Math.random() * 3),
   };
-
   timer = setInterval(
     function () {
       this.setState({ count: this.state.count - 1 });
     }.bind(this),
-    1000
+    1000,
   );
 
   componentDidMount() {
     const timer = this.timer;
     if (this.state.count <= 0) {
+      console.log(this);
       clearInterval(timer);
     }
   }
@@ -27,6 +28,8 @@ class KorQr extends React.Component {
   }
 
   render() {
+    const { adarray, randomImage } = this.state;
+
     return (
       <>
         <div className="qrcodeWrap">
@@ -36,7 +39,7 @@ class KorQr extends React.Component {
             화면에 나타나는 숫자 중<span id="qr_number">[{this.random}]</span>
             을/를 누르세요.
           </p>
-          <div className="qrcode"></div>
+          <div className={adarray[randomImage]}></div>
           <p className="qr_left">
             남은 시간&nbsp;
             <span id="qr_time">

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 class SearchedPage extends React.Component {
   render() {
@@ -19,4 +19,5 @@ class SearchedPage extends React.Component {
     );
   }
 }
+
 export default SearchedPage;
